@@ -5,6 +5,8 @@ import org.joda.time.Duration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class OrderTest {
     final long ONE_DAY_IN_MILLIS = Duration.standardDays(1).getMillis();
     final long TWO_DAYS_AGO = DateTimeUtils.currentTimeMillis() - ONE_DAY_IN_MILLIS * 2;
@@ -26,4 +28,15 @@ public class OrderTest {
         order.confirm();
     }
 
+
+    @Test
+    public void confirmMethodShouldFinishCorrectly() {
+        Order order = new Order();
+
+        order.submit();
+
+        order.confirm();
+
+        assertEquals(order.getOrderState(), Order.State.SUBMITTED);
+    }
 }
