@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class OrderTest {
     final long ONE_DAY_IN_MILLIS = Duration.standardDays(1).getMillis();
-    final long TWO_DAYS_AGO = DateTimeUtils.currentTimeMillis() - ONE_DAY_IN_MILLIS * 2;
+    final long INVALID_DATE = DateTimeUtils.currentTimeMillis() + ONE_DAY_IN_MILLIS * 2;
 
     @Before
     public void setUp() {
@@ -23,7 +23,7 @@ public class OrderTest {
 
         order.submit();
 
-        DateTimeUtils.setCurrentMillisFixed(TWO_DAYS_AGO);
+        DateTimeUtils.setCurrentMillisFixed(INVALID_DATE);
 
         order.confirm();
     }
